@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -14,6 +16,9 @@ public function index()
 }
 public function store(Request $request)
 {
+
+    //modificar Request
+    $request->request->add(['username' =>Str::slug($request->username)]);
     // debug del post
    //dd($request);
 
@@ -30,12 +35,30 @@ public function store(Request $request)
    // de lo contrario maracara error al intentar mandar datos 
    User::create([
         'name'=> $request->name,
+
+        //method generates a URL friendly "slug" from the given string:
         'username' => $request ->username,
         'email' => $request ->email,
-        'password' => $request ->password
+        // hashing password
+        'password' => Hash::make($request ->password)
     ]);
 
-    dd('Creado');
+    //autenticar usaurio primera manera
+    /*
+    auth()->attempt([
+        'email'=> $request->name,
+        'password' => $request->password
+    ]);
+*/
+
+    //autenticar usaurio segunda manera
+    auth()->attempt($request->only('email','password'));
+
+
+   // dd('Creado');
+
+   // redireccionando
+   return redirect()->route('post.index');
 }
 
 }
