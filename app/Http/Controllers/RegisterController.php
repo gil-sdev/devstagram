@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class RegisterController extends Controller
 {
@@ -24,6 +25,17 @@ public function store(Request $request)
     'password'=> 'required|confirmed',
    ]);
 
-   dd($request);
+  // dd($request);
+   // veridicar tambien que todos los campos esten registrados en fillabe en app\models\user.php
+   // de lo contrario maracara error al intentar mandar datos 
+   User::create([
+        'name'=> $request->name,
+        'username' => $request ->username,
+        'email' => $request ->email,
+        'password' => $request ->password
+    ]);
+
+    dd('Creado');
 }
+
 }
