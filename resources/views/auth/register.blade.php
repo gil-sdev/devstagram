@@ -26,7 +26,10 @@
             </div>
                 <div class="mb-5">       
                 <label for="username" class="mb-2 block uppercase text-teal-500 font-bold">   Nombre de usaurio </label>
-                <input id="username" name="username" type="text"  placeholder="Usuario" class="border p-3 w-full rounded-lg">
+                <input id="username" name="username" type="text"  placeholder="Usuario" class="border p-3 w-full rounded-lg @error('name')
+                border-red-500 
+                    @enderror"
+                    value="{{ old('name')}}" >
                 </div>
                 @error('username')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
@@ -34,7 +37,10 @@
 
                 <div class="mb-5">
                 <label for="email" class="mb-2 block uppercase text-teal-500 font-bold">   Email </label>
-                <input id="email" name="email" type="email"  placeholder="Email" class="border p-3 w-full rounded-lg">
+                <input id="email" name="email" type="email"  placeholder="Email" class="border p-3 w-full rounded-lg @error('name')
+                border-red-500 
+                @enderror"
+                value="{{ old('name')}}" >
                 </div>
                 @error('email')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
