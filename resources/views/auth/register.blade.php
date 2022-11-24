@@ -14,22 +14,39 @@
             @csrf
             <div class="mb-5">
                 <label for="name" class="mb-2 block uppercase text-teal-500 font-bold">  Nombre  </label>
-                <input id="name" name="name" type="text" placeholder="Nombre" class="border p-3 w-full rounded-lg">
+                <input id="name" name="name" type="text" placeholder="Nombre" class="border p-3 w-full rounded-lg @error('name')
+                    border-red-500 
+                @enderror"
+                 value="{{ old('name')}}"
+                >
+        <!--Directiva de error returnado de registerCOntroller-->    
+            @error('name')
+                <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
+            @enderror
             </div>
                 <div class="mb-5">       
                 <label for="username" class="mb-2 block uppercase text-teal-500 font-bold">   Nombre de usaurio </label>
                 <input id="username" name="username" type="text"  placeholder="Usuario" class="border p-3 w-full rounded-lg">
                 </div>
+                @error('username')
+                <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
+               @enderror
+
                 <div class="mb-5">
                 <label for="email" class="mb-2 block uppercase text-teal-500 font-bold">   Email </label>
                 <input id="email" name="email" type="email"  placeholder="Email" class="border p-3 w-full rounded-lg">
                 </div>
+                @error('email')
+                <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
+               @enderror
 
                 <div class="mb-5">
                     <label for="password" class="mb-2 block uppercase text-teal-500 font-bold">   Contraseña </label>
                     <input id="password" name="password" type="password"  placeholder="Contraseña" class="border p-3 w-full rounded-lg">
                  </div>
-
+                @error('password')
+                <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
+               @enderror
                 <div class="mb-5">
                     <label for="password_confirmation" class="mb-2 block uppercase text-teal-500 font-bold">   Confirmar Contraseña </label>
                     <input id="password_confirmation" name="password_confirmation" type="password"  placeholder="Confirmar Contraseña" class="border p-3 w-full rounded-lg">
