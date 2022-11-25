@@ -29,7 +29,7 @@
                 <input id="username" name="username" type="text"  placeholder="Usuario" class="border p-3 w-full rounded-lg @error('name')
                 border-red-500 
                     @enderror"
-                    value="{{ old('name')}}" >
+                    value="{{ old('username')}}" >
                 </div>
                 @error('username')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
@@ -40,7 +40,7 @@
                 <input id="email" name="email" type="email"  placeholder="Email" class="border p-3 w-full rounded-lg @error('name')
                 border-red-500 
                 @enderror"
-                value="{{ old('name')}}" >
+                value="{{ old('email')}}" >
                 </div>
                 @error('email')
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>

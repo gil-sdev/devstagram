@@ -14,12 +14,32 @@
             <header class="p-5 border-b bg-white" shadow>
                 <div class="container mx-auto flex justify-between items-center">
                 <h1 class="text-3xl font-black">
-                   <a href="/"> Devstagram
+                   <a href="/"> Devstagram</a>
                 </h1>
+
+                <!-- primera forma de autenticar -->
+               @if (auth()->user())
+                    <p>Sesion iniciado: {{auth()->user()->username}}</p>
+                @else <p>Invitado</p>   
+               @endif
+                <!-- Segunda forma de autenticar -->
+                @auth
+                <p>email: {{auth()->user()->email}}</p>
+                <form method="POST" action="{{route('logout')}}">
+                    @csrf
+                    <button type="submit" class="front-bold uppercase text-gray-600 text-sm" value="Cerrar sesion">
+                    Cerrar sesion
+                    </button>
+                </form>
+                @endauth
+                @guest
                 <nav>
-                    <a href="#" class="font-bold uppercase">Ingresar</a>
+                    <a href="{{route('login')}}" class="font-bold uppercase">Ingresar</a>
                     <a href="{{route('register')}}" class="font-bold uppercase">Crear cuenta</a>
-                </nav>
+                </nav>  
+                @endguest
+
+ 
                 </div>
             </header>
             <main class="container mx-auto mt-18">
