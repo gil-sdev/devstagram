@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class PostController extends Controller
 {
@@ -11,10 +13,12 @@ class PostController extends Controller
         //revisar la autenticacion de la
         $this->middleware('auth');
     }
-    public function index()
+    public function index(User $user)
     {
-        echo 'Muro';
+    //    dd($user->username);
+    //    echo 'Muro';
      //   dd(auth()->user());
-        return view('layouts.dashboard');
+     // enviando datos de user a dashboard
+        return view('layouts.dashboard',['user'=>$user]);
     }
 }

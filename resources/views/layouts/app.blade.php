@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Devstagram - @yield('titulo')</title>
+        <title>Devstagram: @yield('titulo')</title>
         <!-- Se hace instancia del css de Tailwin css -->
         @vite('resources/css/app.css')
         <link href="{{asset('css/app.cs')}}" rel="stylesheet">
