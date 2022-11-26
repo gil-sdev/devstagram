@@ -21,4 +21,8 @@ class PostController extends Controller
      // enviando datos de user a dashboard
         return view('layouts.dashboard',['user'=>$user]);
     }
+    public function create()
+    {
+      return view('post.create');
+    }
 }

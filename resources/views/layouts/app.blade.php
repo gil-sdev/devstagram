@@ -6,9 +6,16 @@
         <title>Devstagram: @yield('titulo')</title>
         <!-- Se hace instancia del css de Tailwin css -->
         @vite('resources/css/app.css')
+        <!-- etiquta que ayuda llamar estilos de uso de no solo una vez 
+            se usara usando la directiva push desde create.blade.php
+
+                    stack('style')
+        -->      
+        @stack('scripts')
+        @stack('styles')
         <link href="{{asset('css/app.cs')}}" rel="stylesheet">
-        <script src="{{asset('js/app.cs')}}" defer></<script>      
-        </script>
+        <script src="{{asset('js/app.cs')}}" defer=""></<script> 
+        </script> 
     </head>
     <body class="bg-gray-100">
             <header class="p-5 border-b bg-white" shadow>
@@ -18,19 +25,23 @@
                 </h1>
 
                 <!-- primera forma de autenticar -->
-               @if (auth()->user())
-                    <p>Sesion iniciado: {{auth()->user()->username}}</p>
-                @else <p>Invitado</p>   
-               @endif
                 <!-- Segunda forma de autenticar -->
                 @auth
-                <p>email: {{auth()->user()->email}}</p>
-                <form method="POST" action="{{route('logout')}}">
-                    @csrf
-                    <button type="submit" class="front-bold uppercase text-gray-600 text-sm" value="Cerrar sesion">
-                    Cerrar sesion
-                    </button>
-                </form>
+                <nav class="flex gap-2 items-center">
+                    <!-- heroicons at heroicons.com -->
+                    <a href="{{route('post.create')}}" class="flex items-center grap-2 bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>                     
+                    Crear
+                </a>
+                </nav>   
+                    <form method="POST" action="{{route('logout')}}">
+                        @csrf
+                        <button type="submit" class="front-bold uppercase text-gray-600 text-sm" value="Cerrar sesion">
+                        Cerrar sesion
+                        </button>
+                    </form>
                 @endauth
                 @guest
                 <nav>
