@@ -14,7 +14,7 @@
         @stack('scripts')
         @stack('styles')
         <link href="{{asset('css/app.cs')}}" rel="stylesheet">
-        <script src="{{asset('js/app.cs')}}" defer=""></<script> 
+        <script src="{{asset('/js/app.js')}}" defer=""></<script> 
         </script> 
     </head>
     <body class="bg-gray-100">

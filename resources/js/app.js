@@ -1,4 +1,5 @@
 import Dropzone from "dropzone";
+import { drop } from "lodash";
 Dropzone.autoDiscover = false;
 
 //configuracion de dropzone
@@ -10,4 +11,22 @@ const dropzone = new Dropzone('#dropzone',{
     maxFiles:1,
     uploadMultiple: false
 
+});
+
+//evento dopzone
+
+dropzone.on('sending', function (file,xhr,formData){
+console.log(file);
+});
+
+dropzone.on("success", function(file, response){
+    console.log(response);
+});
+
+dropzone.on("error", function(file, message){
+    console.log(message);
+});
+
+dropzone.on("removedfile", function(){
+    console.log(message);
 });
