@@ -22,8 +22,10 @@ Cear
             <form action="{{route('imagenes.store')}}" method="POST" enctype="multipart/form-data" id="dropzone" class=" dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
                 @csrf
             </form>
+
             <div class="md:w-4/12 bg-white shadow-xl md:items-center">
-                <form action="#" method="POST">
+
+                <form action="{{route('post.store')}}" method="POST">
                     <!-- directiva de seguridad  implementa un token -->
                     @csrf
                     <div class="mb-5">
@@ -31,10 +33,10 @@ Cear
                         <input id="titulo" name="titulo" type="text" placeholder="Titulo de la publicación" class="border p-3 w-full rounded-lg @error('titulo')
                             border-red-500 
                         @enderror"
-                         value="{{ old('name')}}"
+                         value="{{ old('titulo')}}"
                         >
                 <!--Directiva de error returnado de registerCOntroller-->    
-                    @error('name')
+                    @error('titulo')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
                     @enderror
                     </div>
@@ -48,8 +50,10 @@ Cear
                         @error('descripcion')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
                        @enderror
-        
-                         <input type="submit" value="Crear Cuenta" class="bg-sky-600 rounded">
+                        <div class="mb-5">
+                        <input name="imagen" type="hidden" value="{{old('imagen')}}">
+                        </div>
+                         <input type="submit" value="Publicar" class="bg-sky-600 rounded inline-block">
                 </form>
             </div>
         </div>

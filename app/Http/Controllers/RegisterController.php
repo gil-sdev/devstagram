@@ -58,7 +58,7 @@ public function store(Request $request)
    // dd('Creado');
 
    // redireccionando
-   return redirect()->route('post.index');
+   return redirect()->route('post.index',['user'=> auth()->user()]);
 }
 
 }

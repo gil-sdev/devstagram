@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
+            $table->text('descripcion');
+            $table->string('imagen');
+            $table->foreignId('users_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
