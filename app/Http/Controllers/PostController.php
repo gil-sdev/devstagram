@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use  App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Symfony\Component\CssSelector\XPath\Extension\PseudoClassExtension;
 
 class PostController extends Controller
 {
@@ -28,12 +30,44 @@ class PostController extends Controller
     }
     public function store(Request $request)
     {
-      //  dd($request);
+     //  dd($request);
+
+
         $this->validate($request,[
             'titulo' => 'required|max:255',
             'descripcion' => 'required',
             'imagen' => 'required',
         ]);
-     
+
+        //1 forma de crear una bases de datos
+
+/*
+        Post::create([
+        'titulo' => $request->titulo,
+        'descripcion' => $request->descripcion,
+        'imagen'=>$request->imagen,
+        'user_id'=> auth()->user()->id,
+        ]);
+ */
+/*    
+        // 2 otra forma de crear una bases de datos
+        $post = new Post;
+        $post->titulo =$request->titulo;
+        $post->imagen = $request ->imagen;
+        $post->descripcion = $request->descripcion;
+        $post->users_id = auth()->user()->id;
+        $post->save();
+*/
+
+//3ra forma de escribir en la Bd
+$request->user()->post()->create([
+  'titulo' => $request->titulo,
+  'descripcion' => $request->descripcion,
+  'imagen'=>$request->imagen,
+  'user_id'=> auth()->user()->id,
+]);
+
+        return redirect()->route('post.index',auth()->user()->username);
+
     }
 }

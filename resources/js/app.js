@@ -23,29 +23,29 @@ const dropzone = new Dropzone('#dropzone',{
             imagenPublicada.previewElement.classList.add('dz-succes','dz-complete');
 
         }
-        alert("dropzone creado")
     },
 
 });
 
 //evento dopzone
-
+/*
 dropzone.on('sending', function (file,xhr,formData){
 console.log(response.imagen);
 //modificara el input imagen hiden en create.blade.php
 document.querySelector('[name="imagen"]').value = response.imagen;
 });
-/*
-dropzone.on("success", function(file, response){
-    console.log(response);
-});
+*/
 
-dropzone.on("error", function(file, message){
-    console.log(message);
+dropzone.on("success", function(file, response){
+    document.querySelector('[name="imagen"]').value = response.imagen;
 });
 
 dropzone.on("removedfile", function(){
+    document.querySelector('[name="imagen"]').value = response.imagen;
+});
+
+/*
+dropzone.on("error", function(file, message){
     console.log(message);
 });
 */
-

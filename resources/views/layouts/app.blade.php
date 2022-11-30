@@ -13,6 +13,7 @@
         -->      
         @stack('scripts')
         @stack('styles')
+        @vite('resources/js/app.js')
         <link href="{{asset('css/app.cs')}}" rel="stylesheet">
         <script src="{{asset('/js/app.js')}}" defer=""></<script> 
         </script> 

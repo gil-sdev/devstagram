@@ -35,7 +35,7 @@ Cear
                         @enderror"
                          value="{{ old('titulo')}}"
                         >
-                <!--Directiva de error returnado de registerCOntroller-->    
+                <!--Directiva de error returnado de COntroller-->    
                     @error('titulo')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
                     @enderror
@@ -51,7 +51,7 @@ Cear
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">{{$message}}</p>
                        @enderror
                         <div class="mb-5">
-                        <input name="imagen" type="hidden" value="{{old('imagen')}}">
+                        <input name="imagen" type="hidden" value="{{old('imagen')}}35dcbbde-9111-4a78-8d7a-3e96953558ec.png">
                         </div>
                          <input type="submit" value="Publicar" class="bg-sky-600 rounded inline-block">
                 </form>

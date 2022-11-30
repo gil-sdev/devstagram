@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Post;
 
 
 class User extends Authenticatable
@@ -43,4 +44,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //creando una relacion one to many
+    public function posts()
+    {  // En caso de que no funcione colocar la clave foranea
+       // return $this->hasMany(Post::class,'id_foreanea');
+        return $this->hasMany(Post::class,'users_id');
+    }
 }
