@@ -18,8 +18,8 @@ class PostController extends Controller
     public function index(User $user)
     {
       // se ahce la consulta de los post de usuario
-      // los resulados son obtenidos mediante get
-      $posts = Post::where('users_id',$user->id)->get();
+      // usando el modelo eloquet y paginar los resultados
+      $posts = Post::where('users_id',$user->id)->paginate(3);
 //      dd($posts);
       return view('layouts.dashboard',[
         'user' => $user,  // datos del usuario
@@ -57,7 +57,7 @@ class PostController extends Controller
         'user_id'=> auth()->user()->id,
         ]);
  */
-/*    
+
         // 2 otra forma de crear una bases de datos
         $post = new Post;
         $post->titulo =$request->titulo;
@@ -65,15 +65,17 @@ class PostController extends Controller
         $post->descripcion = $request->descripcion;
         $post->users_id = auth()->user()->id;
         $post->save();
-*/
+
 
 //3ra forma de escribir en la Bd
+/*
 $request->user()->post()->create([
   'titulo' => $request->titulo,
   'descripcion' => $request->descripcion,
   'imagen'=>$request->imagen,
   'user_id'=> auth()->user()->id,
 ]);
+*/
 
         return redirect()->route('post.index',auth()->user()->username);
 
