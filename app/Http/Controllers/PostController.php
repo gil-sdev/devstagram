@@ -12,8 +12,9 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        //revisar la autenticacion de la
-        $this->middleware('auth');
+        //revisar la autenticacion del usuario para proteger 
+        // las url 
+        $this->middleware('auth')->except(['show','index']);
     }
     public function index(User $user)
     {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -41,6 +42,8 @@ Route::get('/{user:username}/',[PostController::class,'index'])->name('post.inde
 Route::get('/post/create',[PostController::class,'create'])->name('post.create'); //imprime el formulaeio
 Route::post('/post',[PostController::class,'store'])->name('post.store');  //guarda el contenido
 Route::get('/{user:username}/post/{post}',[PostController::class,'show'])->name('post.show'); //imprime el formulaeio
+
+Route::post('/{user:username}/post/{post}',[ComentarioController::class,'store'])->name('comentarios.store'); //guardar comentario
 
 Route::post('/imagenes',[ImagenController::class,'store'])->name('imagenes.store');
 

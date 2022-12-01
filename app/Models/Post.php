@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Comentario;
 use App\Models\User;
 
 class Post extends Model
@@ -25,5 +26,11 @@ class Post extends Model
     {
         //se lee los datos del usuario solo el nombre y nombre de usuario
         return $this->belongsTo(User::class)->select(['name','username']);
+    }
+
+    public  function cometarios()
+    {
+        // creando relacion de un post tendra multiples comentarios
+        return $this->hasMany(Comentario::class,'posts_id');
     }
 }
