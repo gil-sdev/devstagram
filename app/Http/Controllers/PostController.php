@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use  App\Models\Post;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -67,17 +67,31 @@ class PostController extends Controller
         $post->save();
 
 
-//3ra forma de escribir en la Bd
-/*
-$request->user()->post()->create([
-  'titulo' => $request->titulo,
-  'descripcion' => $request->descripcion,
-  'imagen'=>$request->imagen,
-  'user_id'=> auth()->user()->id,
-]);
-*/
+      //3ra forma de escribir en la Bd
+      /*
+      $request->user()->post()->create([
+        'titulo' => $request->titulo,
+        'descripcion' => $request->descripcion,
+        'imagen'=>$request->imagen,
+        'user_id'=> auth()->user()->id,
+      ]);
+      */
 
         return redirect()->route('post.index',auth()->user()->username);
 
     }
-}
+
+    public function show(User $user,Post $post)
+    {
+
+      //dd('MIs post');
+
+    //  dd($post);
+      return view('post.show',[
+        'post' => $post,
+        'user' => $user
+      ]);
+    }
+
+
+  }

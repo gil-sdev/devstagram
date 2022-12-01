@@ -44,6 +44,7 @@
                         </button>
                     </form>
                 @endauth
+                
                 @guest
                 <nav>
                     <a href="{{route('login')}}" class="font-bold uppercase">Ingresar</a>
