@@ -17,6 +17,14 @@ class PostController extends Controller
     }
     public function index(User $user)
     {
+      // se ahce la consulta de los post de usuario
+      // los resulados son obtenidos mediante get
+      $posts = Post::where('users_id',$user->id)->get();
+//      dd($posts);
+      return view('layouts.dashboard',[
+        'user' => $user,  // datos del usuario
+        'posts' => $posts  // datps del post para la vista
+      ]);
     //    dd($user->username);
     //    echo 'Muro';
      //   dd(auth()->user());
