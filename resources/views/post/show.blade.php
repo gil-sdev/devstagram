@@ -28,6 +28,22 @@
     </a> 
 </div>
 
+@auth
+    @if ($post->users_id == auth()->user()->id) 
+<form action="{{ route('posts.destroy', $post) }}" method="POST">
+  @csrf
+  <!-- Method spoofing forma de enviar un delete es meramente propiedad
+-- de laravel no es soportado por los navegadores de manera nativa
+-->
+  @method('DELETE')
+    <input 
+   type="submit"
+   value="Eliminar"
+   class="bg-red-500 hover:bg-red-600 p-2 rounded text-white font-bold mt-4 cursor-pointer"> 
+</form>
+@endif
+@endauth
+
 <!-- helper
 -->
 @auth
@@ -50,7 +66,8 @@
             border-red-500 
                 @enderror"
                 value="{{ old('comentario')}}" >
-            </div>
+        </div>
+
             <input type="submit" value="Comentar" 
             class="bg-sky-600 hover:bg-sky-780 transition-colors cursor-pointer uppercase
             font-bold w-full text-white rounded-lg ">

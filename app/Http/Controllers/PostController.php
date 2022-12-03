@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Symfony\Component\CssSelector\XPath\Extension\PseudoClassExtension;
@@ -92,6 +93,25 @@ class PostController extends Controller
         'post' => $post,
         'user' => $user
       ]);
+    }
+
+    public function destroy(Post $post)
+    {
+     // if($post->user_id == auth()->user()->id);
+
+      //revisa la autorizacion  de la operacion con el modelo
+     $this->authorize('delete',$post);
+     //elmina el registro
+      $post->delete();
+
+      //Eliminar imagen 
+      $imagen_path = public_path('uploads/'.$post->imagen);
+      if(File::exists($imagen_path)){
+        unlink($imagen_path); //funcion php
+        File($imagen_path);// funcion laravel
+      }
+
+      return redirect()->route('post.index', auth()->user()->username);
     }
 
 
