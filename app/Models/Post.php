@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Comentario;
 use App\Models\User;
+use App\Models\Like;
 
 class Post extends Model
 {
@@ -32,5 +33,19 @@ class Post extends Model
     {
         // creando relacion de un post tendra multiples comentarios
         return $this->hasMany(Comentario::class,'posts_id');
+    }
+
+    public function likes()
+    {
+        //un post tine muchos likes
+        return $this->hasMany(Like::class);
+    }
+
+
+    // revisar los like de un usuario para no duplicar
+    public function checkLike(User $user)
+    {
+        // returna el id del usario que ya dio like al post
+        return $this->likes->contains('users_id', $user->id);
     }
 }

@@ -108,7 +108,7 @@ class PostController extends Controller
       $imagen_path = public_path('uploads/'.$post->imagen);
       if(File::exists($imagen_path)){
         unlink($imagen_path); //funcion php
-        File($imagen_path);// funcion laravel
+    //    File($imagen_path);// funcion laravel
       }
 
       return redirect()->route('post.index', auth()->user()->username);

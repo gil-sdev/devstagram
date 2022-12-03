@@ -51,4 +51,9 @@ class User extends Authenticatable
        // return $this->hasMany(Post::class,'id_foreanea');
         return $this->hasMany(Post::class,'users_id');
     }
+    public function likes()
+    {
+        // Crea relacion de LIkes y usuarios, un usuario tine muchos likes
+        return $this->hasMany(Like::class,'users_id');
+    }
 }
