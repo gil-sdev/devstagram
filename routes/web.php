@@ -5,6 +5,7 @@ use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
@@ -23,6 +24,14 @@ use App\Http\Controllers\RegisterController;
 Route::get('/', function () {
     return view('principal');
 });
+
+//ruta del perfil
+Route::get('/editar-perfil',[PerfilController::class,'index'])->name('perfil.index');
+
+Route::post('/editar-perfil',[PerfilController::class,'store'])->name('perfil.store');
+
+
+
 // rutas nombradas
 //           parametro      controlador             metodo        // nombre de la ruta con el cual se instancia
 Route::get('/registro', [RegisterController::class, 'index'])->name('register');
@@ -55,3 +64,4 @@ Route::post('/post/{post}/likes',[LikeController::class,'store'])->name('like.po
 
 //unlike para post
 Route::delete('/post/{post}/likes',[LikeController::class,'destroy'])->name('like.posts.destroy');
+

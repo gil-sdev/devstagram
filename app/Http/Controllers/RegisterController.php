@@ -17,7 +17,7 @@ public function index()
 public function store(Request $request)
 {
 
-    //modificar Request
+    //modificar Request formato de texto
     $request->request->add(['username' =>Str::slug($request->username)]);
     // debug del post
    //dd($request);
