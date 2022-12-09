@@ -56,4 +56,20 @@ class User extends Authenticatable
         // Crea relacion de LIkes y usuarios, un usuario tine muchos likes
         return $this->hasMany(Like::class,'users_id');
     }
+
+    // almacenar los seguidores de un usuario
+
+    public function follower()
+    {
+        // un seguirdor puede seguir a muchos y viceversaa
+        return $this->belongsToMany(User::class,'followers','users_id','follower_id');
+    }
+    public function siguiendo(User $user)
+    {
+        return   $this->follower->contains($user->id);
+    }
+    public function followings()
+    {
+        return $this->belongsToMany(User::class,'followers','follower_id','users_id');
+    }
 }

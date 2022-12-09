@@ -29,17 +29,43 @@
        @endauth
     </div>  
         <p class="tetx-gray-800 text-sm mb-3 font-bold">
-        0
-        <span class="font-normal"> Seguridores</span>
+        
+         {{ $user->follower()->count() }}
+        <span class="font-normal"> 
+            @choice('Seguidor|Seguidores',$user->follower()->count())
+        </span>
         </p>
         <p class="tetx-gray-800 text-sm mb-3 font-bold">
-            0
-            <span class="font-normal"> Siguiendo</span>
+            {{ $user->followings()->count() }}
+            <span class="font-normal">   @choice('Siguiendo|Siguiendo',$user->follower()->count())</span>
         </p>
         <p class="tetx-gray-800 text-sm mb-3 font-bold">
             {{$user->posts->count() }}
             <span class="font-normal"> post</span>
         </p>
+ 
+        @auth      
+            @if (auth()->user()->id !== $user->id)
+                @if(!$user->siguiendo(auth()->user()))             
+                    <form action="{{ route('users.follow', $user) }}"  
+                        method="POST">
+                        @csrf
+                        <input type="submit" value="Seguir" 
+                        class="bg-blue-600 text-white uppercase rounded-lg px-3 py-1 text--xs font-bold cursor-pointer">
+                    </form>
+                @else
+                        <form 
+                            action="{{ route('users.unfollow', $user) }}" 
+                            method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <input type="submit" value="Dejar de seguir" 
+                            class="bg-blue-600 text-white uppercase rounded-lg px-3 py-1 text--xs font-bold cursor-pointer">
+                        </form>
+                @endif
+            @endif  
+        @endauth
+
     </div>
 </div>
 
