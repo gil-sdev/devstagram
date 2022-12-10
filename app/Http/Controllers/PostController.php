@@ -25,7 +25,7 @@ class PostController extends Controller
 //      dd($posts);
       return view('layouts.dashboard',[
         'user' => $user,  // datos del usuario
-        'posts' => $posts  // datps del post para la vista
+        'posts' => $posts  // datos del post para la vista
       ]);
     //    dd($user->username);
     //    echo 'Muro';

@@ -27,7 +27,7 @@ class HomeController extends Controller
         // pluck extrae solo los datos de un campo      
        
         $idSeguidos = auth()->user()->followings->pluck('id')->toArray();
-            $post = Post::whereIn('users_id',$idSeguidos)->latest()->paginate(3);
+        $post = Post::whereIn('users_id',$idSeguidos)->latest()->paginate(3);
             return view('home',[
                 'post' => $post,
             ]);
