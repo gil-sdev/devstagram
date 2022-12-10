@@ -20,6 +20,6 @@ class FollowerController extends Controller
     {
         $user->follower()->detach(auth()->user()->id);
         return back();
-        dd('Dejando de seguir');
+        //dd('Dejando de seguir');
     }
 }

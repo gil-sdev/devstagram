@@ -21,7 +21,7 @@ class PostController extends Controller
     {
       // se ahce la consulta de los post de usuario
       // usando el modelo eloquet y paginar los resultados
-      $posts = Post::where('users_id',$user->id)->paginate(3);
+      $posts = Post::where('users_id',$user->id)->latest()->paginate(3);
 //      dd($posts);
       return view('layouts.dashboard',[
         'user' => $user,  // datos del usuario

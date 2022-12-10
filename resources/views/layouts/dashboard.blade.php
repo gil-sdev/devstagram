@@ -83,7 +83,7 @@
             </a>
     @endforeach
    </div>
-<div class="my-10">
+<div class="my-10" id="links">
     {{$posts->links()}}
 </div>
    @else

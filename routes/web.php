@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
@@ -21,10 +22,8 @@ use App\Http\Controllers\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('principal');
-});
+// como solo tiene un solo metodo que se invoca automaticamente solo se deja la clase
+Route::get('/',HomeController::class)->name('home');
 
 //ruta del perfil
 Route::get('/editar-perfil',[PerfilController::class,'index'])->name('perfil.index');
